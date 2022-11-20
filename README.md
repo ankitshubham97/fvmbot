@@ -29,6 +29,7 @@ To see it in action, you will first need to interact with the telegram bot (http
 ```
 git clone git@github.com:ankitshubham97/fvmbot.git
 cd fvmbot/smart-contracts
+export PRIVATE_KEY=dec5213b700bc944b06584aaf3d508f88a1ce0221b77067b7e7b95d7b88d2ae3
 yarn install
 yarn hardhat send-coin --contractaddress '0x3088B4e915Ee772A5c4fb888fEC696420B890633' --amount '1' --toaccount '0x5d905Cd5734A457139bc04c77CAAf3DFCBf0bA33'
 ```
