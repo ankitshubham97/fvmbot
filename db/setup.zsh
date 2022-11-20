@@ -10,11 +10,10 @@ if [[ ! -z ${NODE_ENV+unset} ]]; then
     exit 1
 fi
 
-# This should only run on localhost
-export PGHOST=localhost
-export PGDATABASE=fuze_app
-export PGUSER=postgres
-export PGPASSWORD=postgres
+export PGHOST=tiny.db.elephantsql.com
+export PGDATABASE=tqasymif
+export PGUSER=tqasymif
+export PGPASSWORD=TRRGtLnlM3QgqrlhfBVzfTpJuuV8Fq18
 export PGPORT=5432
 
 # Need to run sequelize-cli from db folder
