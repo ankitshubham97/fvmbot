@@ -7,13 +7,11 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc && cd docs && yarn install && yarn build",
+    "build": "npx tsc",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "gendoc": "openapi-comment-parser src docs/openapi.json",
     "fixlint": "eslint -c package.json 'src/**/*.ts' --fix",
     "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tool": "cross-env NODE_ENV=development ts-node src/tools/sendApiReq.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "commitlint": {
     "extends": [
