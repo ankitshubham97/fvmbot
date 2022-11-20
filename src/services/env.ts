@@ -11,6 +11,7 @@ export type EnvVariables = {
   PGUSER: string,
   PGPASSWORD: string,
   PGPORT: string,
+  TG_BOT_TOKEN: string,
 }
 
 class EnvService implements AbstractService {
@@ -24,6 +25,7 @@ class EnvService implements AbstractService {
     PGUSER: str(),
     PGPASSWORD: str(),
     PGPORT: str(),
+    TG_BOT_TOKEN: str(),
   };
 
   static envs: Readonly<EnvVariables>;

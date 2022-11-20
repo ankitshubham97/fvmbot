@@ -3,6 +3,8 @@ import HookInterface from 'interfaces/hook.interface';
 import { sequelize } from '../../models/sql/sequelize';
 import Controller from '../../interfaces/controller.interface';
 import User from '../../models/sql/user.model';
+import { sendMessageToUser } from '../../services/api';
+import { welcomeMsg } from '../../utils/msg';
 
 class HookController implements Controller {
   public router = express.Router();
@@ -25,6 +27,12 @@ class HookController implements Controller {
     const hookBody = request.body as HookInterface;
     const userId = hookBody.message.chat.id;
     const address = hookBody.message.text;
+    if (address === '/start') {
+      const name = hookBody.message.chat.first_name;
+      await sendMessageToUser({userId, text: welcomeMsg({name})});
+      response.send();
+      return;
+    }
     const existingUserAndAddress = await this.userRepository.findOne({
       where: {
         userId,
@@ -43,7 +51,7 @@ class HookController implements Controller {
       txnCount: 0
     })
     
-    response.send(request.body);
+    response.send();
   };
 
 }
