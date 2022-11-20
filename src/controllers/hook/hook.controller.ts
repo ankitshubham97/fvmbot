@@ -41,7 +41,7 @@ class HookController implements Controller {
     });
 
     if (existingUserAndAddress) {
-      await sendMessageToUser({userId, text: `We have already received the request for the address ${address}`});
+      await sendMessageToUser({userId, text: `We have already received the request for the address ${address} 😅`});
       response.send();
       return;
     }
@@ -50,7 +50,7 @@ class HookController implements Controller {
       address,
       txnCount: 0
     })
-    
+    await sendMessageToUser({userId, text: `We are now tracking the address ${address} for you 🧐`});
     response.send();
   };
 
