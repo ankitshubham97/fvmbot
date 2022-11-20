@@ -25,7 +25,7 @@
 
     "typeRoots": ["src/declaration.d.ts", "node_modules/@types"],
     "paths": {},
-    "types": ["node", "jest"],
+    "types": ["node"],
     "skipLibCheck": true,
   },
   "include": ["src/**/*.ts"],
