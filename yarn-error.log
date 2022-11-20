@@ -1,0 +1,144 @@
+Arguments: 
+  /Users/ankitshubham/.nvm/versions/node/v16.16.0/bin/node /Users/ankitshubham/.nvm/versions/node/v16.16.0/bin/yarn init
+
+PATH: 
+  /Users/ankitshubham/.nvm/versions/node/v16.16.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/ankitshubham/.nvm/versions/node/v16.16.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.16.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/Users/ankitshubham/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:137150:13)
+      at Interface.emit (node:events:527:28)
+      at Interface._ttyWrite (node:readline:1081:16)
+      at ReadStream.onkeypress (node:readline:288:10)
+      at ReadStream.emit (node:events:527:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  {
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [],
+    "license": "ISC",
+    "author": "",
+    "main": "index.js",
+    "scripts": {
+      "build": "npx tsc && cd docs && yarn build",
+      "dev": "PORT=3001 nodemon",
+      "gendoc": "openapi-comment-parser src docs/openapi.json",
+      "fixlint": "eslint -c package.json 'src/**/*.ts' --fix",
+      "start": "node dist/index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "commitlint": {
+      "extends": [
+        "@commitlint/config-conventional"
+      ],
+      "rules": {
+        "type-enum": [
+          1,
+          "always",
+          [
+            "build",
+            "chore",
+            "docs",
+            "feat",
+            "fix",
+            "lint",
+            "refactor",
+            "revert",
+            "type"
+          ]
+        ]
+      }
+    },
+    "prettier": {
+      "semi": true,
+      "singleQuote": true,
+      "trailingComma": "es5"
+    },
+    "eslintConfig": {
+      "env": {
+        "es6": true,
+        "node": true
+      },
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+      },
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "sort-imports": [
+          "error",
+          {
+            "ignoreCase": true,
+            "ignoreDeclarationSort": true
+          }
+        ],
+        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-unused-vars": [
+          1,
+          {
+            "argsIgnorePattern": "^_"
+          }
+        ]
+      }
+    },
+    "dependencies": {
+      "axios": "^0.27.2",
+      "body-parser": "^1.19.0",
+      "cookie-parser": "^1.4.5",
+      "cors": "^2.8.5",
+      "dotenv": "^16.0.1",
+      "express": "^4.18.1",
+      "helmet": "^4.2.0",
+      "jsonwebtoken": "^8.5.1"
+    },
+    "devDependencies": {
+      "@types/cookie-parser": "^1.4.2",
+      "@types/cors": "^2.8.10",
+      "@types/express": "^4.17.13",
+      "@types/helmet": "0.0.48",
+      "@types/jsonwebtoken": "^8.5.8",
+      "@types/node": "^18.7.16",
+      "@typescript-eslint/eslint-plugin": "^4.27.0",
+      "concurrently": "^7.3.0",
+      "eslint": "^7.29.0",
+      "eslint-config-prettier": "^8.3.0",
+      "eslint-plugin-prettier": "^3.4.0",
+      "nodemon": "^2.0.19",
+      "openapi-comment-parser": "^1.0.0",
+      "prettier": "^2.3.1",
+      "ts-node": "^10.0.0",
+      "typescript": "^4.7.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
