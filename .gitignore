@@ -4,3 +4,4 @@ node_modules
 !*.secret
 db/postgres/config/config.json
 env/env.development
+python-cron/.env
