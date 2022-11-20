@@ -9,7 +9,7 @@ import {
 @Table
 class User extends Model<User> {
   @Column
-  userId!: string;
+  userId!: number;
 
   @Column
   address!: string;
