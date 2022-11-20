@@ -48,7 +48,8 @@ class HookController implements Controller {
     await this.userRepository.create({
       userId,
       address,
-      txnCount: 0
+      txnCount: 0,
+      firstTime: true
     })
     await sendMessageToUser({userId, text: `We are now tracking the address ${address} for you 🧐`});
     response.send();

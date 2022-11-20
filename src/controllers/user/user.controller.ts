@@ -29,9 +29,10 @@ class UserController implements Controller {
     response: express.Response
   ) => {
     const { userId, address } = request.params;
-    const { txnCount } = request.body;
+    const { txnCount, firstTime } = request.body;
     const users = await this.userRepository.update({
-      txnCount
+      txnCount,
+      firstTime
     },{
       where: {
         userId,

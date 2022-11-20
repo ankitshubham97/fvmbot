@@ -18,6 +18,9 @@ class User extends Model<User> {
   txnCount!: number;
 
   @Column
+  firstTime!: boolean;
+
+  @Column
   @CreatedAt
   createdAt!: Date;
 
