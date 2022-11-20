@@ -4,7 +4,7 @@ import { sequelize } from '../../models/sql/sequelize';
 import Controller from '../../interfaces/controller.interface';
 import User from '../../models/sql/user.model';
 import { sendMessageToUser } from '../../services/api';
-import { welcomeMsg } from '../../utils/msg';
+import { errorMsg, welcomeMsg } from '../../utils/msg';
 
 class HookController implements Controller {
   public router = express.Router();
@@ -19,6 +19,10 @@ class HookController implements Controller {
     this.router.post(`/hook`, this.handleHook);
   }
 
+  private containsWhitespace(str: string) {
+    return /\s/.test(str);
+  }
+
   private handleHook = async (
     request: express.Request,
     response: express.Response
@@ -26,11 +30,26 @@ class HookController implements Controller {
     console.log(request.body);
     const hookBody = request.body as HookInterface;
     const userId = hookBody.message.chat.id;
-    const address = hookBody.message.text;
+    let address = hookBody.message.text;
+    const name = hookBody.message.chat.first_name;
     if (address === '/start') {
-      const name = hookBody.message.chat.first_name;
       await sendMessageToUser({userId, text: welcomeMsg({name})});
       response.send();
+      return;
+    }
+    if (address.startsWith('remove')) {
+      address = address.split('remove')[1].trim();
+      await sendMessageToUser({userId, text: `We will now stop tracking the address ${address} 🫡`});
+      await this.userRepository.destroy({
+        where: {
+          userId,
+          address,
+        }
+      })
+      return;
+    }
+    if (this.containsWhitespace(address)) {
+      await sendMessageToUser({userId, text: errorMsg({name})});
       return;
     }
     const existingUserAndAddress = await this.userRepository.findOne({

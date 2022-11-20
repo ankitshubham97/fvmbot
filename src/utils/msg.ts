@@ -7,5 +7,19 @@ I can work with:
 3. FVM Wallet ETH address, e.g. 0x4ad53d31Cb104Cf5f7622f1AF8Ed09C3ca980523
 4. FVM Wallet Filecoin address (F4Address), e.g. f410fjlkt2molcbgpl53cf4npr3ijypfjqbjdnzjcl3a
 
+Also, if you want to stop tracking any address, just type:
+
+remove <address>
+e.g. remove t410fjlkt2molcbgpl53cf4npr3ijypfjqbjdnzjcl3a
+
 Lesssss goooooo 🚀`;
+}
+
+export const errorMsg = ({name}:{name:string}): string => {
+  return `Uh oh! Looks like you entered something I don't understand 😵‍💫.
+
+Here is the welcome message I sent you in the beginning, maybe check what capabilities I have...
+
+${welcomeMsg({name})}
+`;
 }
