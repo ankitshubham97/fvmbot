@@ -1,0 +1,6 @@
+dist
+node_modules
+.gitsecret/keys/random_seed
+!*.secret
+db/postgres/config/config.json
+env/env.development
