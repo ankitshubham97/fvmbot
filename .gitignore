@@ -5,3 +5,4 @@ node_modules
 db/postgres/config/config.json
 env/env.development
 python-cron/.env
+venv
