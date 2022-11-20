@@ -16,21 +16,39 @@ def job():
   # 2. Call glif to get txnCount: curTxnCount
   glif_api_url = "https://graph-wallaby.glif.link/query"
   for user in users:
+    limit = 100
+    offset = 0
+    firstTime = user["firstTime"]
+
     txnCount = user["txnCount"]
     payload = {
       "operationName": "Messages",
       "variables": {
           "address": user["address"],
-          "limit": 100,
-          "offset": 0
+          "limit": limit,
+          "offset": offset
       },
       "query": "query Messages($address: String!, $limit: Int!, $offset: Int!) {\n  messages(address: $address, limit: $limit, offset: $offset) {\n    cid\n    to {\n      id\n      robust\n      __typename\n    }\n    from {\n      id\n      robust\n      __typename\n    }\n    nonce\n    height\n    method\n    value\n    __typename\n  }\n}"
     }
     txns = requests.post(glif_api_url, json=(payload)).json()["data"]["messages"]
     if txns is None:
+      payload = {
+        "txnCount": "0",
+        "firstTime": False
+      }
+      users = requests.put(backend_api_url + "/users/userId/" + str(user["userId"]) + "/address/" + user["address"], json=payload).json()
       continue
     
     curTxnCount = len(txns)
+
+    if firstTime == True:
+      payload = {
+        "txnCount": str(curTxnCount),
+        "firstTime": False
+      }
+      users = requests.put(backend_api_url + "/users/userId/" + str(user["userId"]) + "/address/" + user["address"], json=payload).json()
+      continue
+
     print(txnCount)
     print(curTxnCount)
 
@@ -48,7 +66,8 @@ def job():
       response = requests.post(tg_api_url, json=(payload)).json()
       print(response)
       payload = {
-        "txnCount": str(curTxnCount)
+        "txnCount": str(curTxnCount),
+        "firstTime": False
       }
       users = requests.put(backend_api_url + "/users/userId/" + str(user["userId"]) + "/address/" + user["address"], json=payload).json()
       print(users)
