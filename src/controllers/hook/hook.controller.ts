@@ -46,10 +46,12 @@ class HookController implements Controller {
           address,
         }
       })
+      response.send();
       return;
     }
     if (this.containsWhitespace(address)) {
       await sendMessageToUser({userId, text: errorMsg({name})});
+      response.send();
       return;
     }
     const existingUserAndAddress = await this.userRepository.findOne({
